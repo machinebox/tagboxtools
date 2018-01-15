@@ -9,8 +9,8 @@ import (
 	"strings"
 	"time"
 
+	"github.com/machinebox/sdk-go/boxutil"
 	"github.com/machinebox/sdk-go/tagbox"
-	"github.com/machinebox/sdk-go/x/boxutil"
 )
 
 func main() {
@@ -29,9 +29,6 @@ func main() {
 	defer cancel()
 	err := boxutil.WaitForReady(ctx, tagboxClient)
 	if err != nil {
-		if err == boxutil.ErrCanceled {
-			log.Fatalln("timed out waiting for box to be ready")
-		}
 		log.Fatalln(err)
 	}
 	log.Println("box ready")
